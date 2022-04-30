@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" height="140" viewBox="0 0 140 140">
+  <defs>
+    <clipPath id="clip-transparent70">
+      <rect width="140" height="140"/>
+    </clipPath>
+  </defs>
+  <g id="transparent70" clip-path="url(#clip-transparent70)">
+    <rect width="140" height="140" fill="#353535"/>
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="70" height="70" fill="#626262"/>
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="70" height="70" transform="translate(70 70)" fill="#626262"/>
+  </g>
+</svg>
