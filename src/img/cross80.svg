@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-cross80">
+      <rect width="80" height="80"/>
+    </clipPath>
+  </defs>
+  <g id="cross80" clip-path="url(#clip-cross80)">
+    <line id="Line_9" data-name="Line 9" x2="40" transform="translate(54.642 26.358) rotate(135)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="5"/>
+    <line id="Line_10" data-name="Line 10" x2="40" transform="translate(26.358 26.358) rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="5"/>
+  </g>
+</svg>

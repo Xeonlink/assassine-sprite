@@ -1,0 +1,195 @@
+:root {
+  --app-padding: 30px;
+  --border-rad: 10px;
+  --even-gap: 5px;
+
+  --primary-clr: rgb(30, 30, 30);
+  --primary-clr-light: rgb(48, 48, 48);
+  --primary-clr-lighter: rgb(152, 152, 152);
+  --primary-clr-lightest: rgb(214, 214, 214);
+
+  --img-list-img-width: 40px;
+  --img-list-img-height: 40px;
+
+  --font-color: var(--primary-clr-lightest);
+}
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
+  background: var(--primary-clr);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App input,
+.App input[type="number"]::-webkit-inner-spin-button,
+.App label,
+.App select,
+.App button {
+  all: unset;
+  display: block;
+}
+.App button {
+  border-radius: var(--border-rad);
+  transition: 0.2s;
+  overflow: hidden;
+  cursor: pointer;
+}
+.App button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0.9);
+}
+.App button:focus {
+  box-shadow: 0px 0px 10px 0px white;
+}
+
+/* --------------------------------- */
+.App .box {
+  padding: var(--even-gap);
+
+  background: var(--primary-clr-light);
+  border-radius: var(--border-rad);
+  backdrop-filter: blur(5px);
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--even-gap);
+}
+
+/* --------------------------------- */
+.App .default-dropzone {
+  --even-gap: 40px;
+
+  max-width: 400px;
+  max-height: 300px;
+  width: 50vw;
+  height: 50vh;
+
+  color: white;
+  font-size: 2rem;
+}
+.App .default-dropzone button {
+  width: 100%;
+  height: 100%;
+
+  border: 2px dashed var(--primary-clr-lighter);
+}
+.App .default-dropzone button img {
+  width: 50px;
+  height: 50px;
+}
+
+/* --------------------------------- */
+.App .img-list {
+  position: absolute;
+  top: var(--app-padding);
+  max-width: calc(100vw - var(--app-padding) * 2);
+  max-height: calc(var(--img-list-img-height) + var(--even-gap) * 2);
+  overflow: auto;
+  transition: 800ms ease-in-out;
+}
+.App .img-list:hover {
+  max-height: 250px;
+}
+.App .img-list button {
+  width: var(--img-list-img-width);
+  height: var(--img-list-img-height);
+}
+.App .img-list button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------- */
+.App .control-section {
+  position: absolute;
+  bottom: var(--app-padding);
+  width: 100%;
+
+  color: var(--font-color);
+  font-weight: bold;
+  padding: var(--even-gap);
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: var(--even-gap);
+}
+.App .control-section > * {
+  margin: auto;
+}
+.App .control-section button img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.App .control-section .counter input {
+  width: 30px;
+  height: 30px;
+}
+
+/* --------------------------------- */
+.App .save-modal {
+  --even-gap: 15px;
+  --trans-dur: 600ms;
+
+  animation: modal-show var(--trans-dur) 1;
+
+  display: grid;
+  grid-template-columns: 110px 130px;
+  row-gap: var(--even-gap);
+  column-gap: 0px;
+}
+@keyframes modal-show {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -50px);
+    filter: blur(10px);
+  }
+}
+.App .save-modal form {
+  display: contents;
+}
+.App .save-modal header {
+  color: var(--primary-clr-lightest);
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+.App .save-modal label {
+  color: var(--primary-clr-lightest);
+}
+.App .save-modal select {
+  color: white;
+  cursor: pointer;
+}
+.App .save-modal option {
+  color: black;
+}
+.App .save-modal input {
+  all: unset;
+  color: white;
+  border-radius: var(--border-rad);
+}
+.App .save-modal button {
+  width: 80px;
+  height: 35px;
+  margin: 5px auto 0px auto;
+
+  border: 1px solid var(--primary-clr-lighter);
+  color: var(--primary-clr-lightest);
+  font-weight: bold;
+}
