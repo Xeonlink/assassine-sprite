@@ -1,51 +1,51 @@
 import Box from "@/component/Box";
 import html2canvas from "html2canvas";
 import saveAs from "file-saver";
-import useForm from "@/Hooks/useForm";
 import { strToNum } from "@/extra/Utils";
-import { SUPPORTING_EXTENSIONS } from "@/extra/Constants";
-import useWindow from "@/Hooks/useWindow";
-import { useSelector } from "react-redux";
+import { SUPPORTING_FORMAT } from "@/extra/Constants";
+import useForm from "@/Hooks/useForm";
 
-export default function SaveModal({ windowID }) {
-  const window = useWindow();
-  const saveForm = useForm({ type: "png" }, (saveOption) => {
-    const { width, height, type, name = "output", quality = 100 } = saveOption;
+export default function SaveModal({ closeSelf }) {
+  const saveForm = useForm(
+    "saveOption",
+    (options) => {
+      const { width, height, format, name = "output", quality = 100 } = options;
+      const [mimeType, extension] = format.split("/");
 
-    const targetElement = document.querySelector(".gallery");
-    targetElement.style.transform = "scale(1)";
-    targetElement.style.background = "transparent";
+      const gallery = document.querySelector(".gallery");
+      gallery.style.transform = "scale(1)";
+      gallery.style.background = "transparent";
 
-    const previewSize = getComputedStyle(targetElement);
-    const scale =
-      height / strToNum(previewSize.height) ||
-      width / strToNum(previewSize.width) ||
-      1;
+      const previewSize = getComputedStyle(gallery);
+      const scale =
+        height / strToNum(previewSize.height) ||
+        width / strToNum(previewSize.width) ||
+        1;
 
-    html2canvas(targetElement, { scale, backgroundColor: null })
-      .then((canvas) => canvas.toDataURL(type, quality / 100))
-      .then((url) => saveAs(url, `${name}.${type}`))
-      .catch((error) => alert(error))
-      .finally(() => (targetElement.style = undefined));
-    // .finally(() => window.close(windowID));
-  });
+      html2canvas(gallery, { scale, backgroundColor: null })
+        .then((canvas) => canvas.toDataURL(mimeType, quality / 100))
+        .then((url) => saveAs(url, `${name}.${extension}`))
+        .catch((error) => alert(error))
+        .finally(() => (gallery.style = undefined));
+      // .finally(() => window.close(windowID));
+    },
+    true
+  );
 
   return (
     <Box className="save-modal">
-      <form onSubmit={saveForm.submit}>
+      <form>
         <header style={{ gridColumn: "span 2" }}>Export Assests</header>
 
         <label htmlFor="save-option-id">Format:</label>
         <select
           id="save-option-id"
-          name="type"
-          value={saveForm.type}
+          name="format"
+          value={saveForm.data.format}
           onChange={saveForm.change}
         >
-          {SUPPORTING_EXTENSIONS.map((extension, index) => (
-            <option value={`image/${extension}`} key={index}>
-              {extension}
-            </option>
+          {SUPPORTING_FORMAT.map((format, index) => (
+            <option value={format.join("/")} key={index} children={format[1]} />
           ))}
         </select>
 
@@ -55,7 +55,7 @@ export default function SaveModal({ windowID }) {
           type="text"
           name="name"
           placeholder="filename"
-          value={saveForm.name}
+          value={saveForm.data.name}
           onChange={saveForm.change}
         />
 
@@ -65,7 +65,7 @@ export default function SaveModal({ windowID }) {
           type="number"
           name="width"
           placeholder="px"
-          value={saveForm.width}
+          value={saveForm.data.width}
           onChange={saveForm.change}
         />
 
@@ -75,7 +75,7 @@ export default function SaveModal({ windowID }) {
           type="number"
           name="height"
           placeholder="px"
-          value={saveForm.height}
+          value={saveForm.data.height}
           onChange={saveForm.change}
         />
 
@@ -85,18 +85,14 @@ export default function SaveModal({ windowID }) {
           type="number"
           name="quality"
           placeholder="%"
-          value={saveForm.quality}
+          value={saveForm.data.quality}
           onChange={(e) => {
             e.target.value > 0 && e.target.value < 100 && saveForm.change(e);
           }}
         />
 
-        <button type="submit">Export</button>
-        <button
-          type="button"
-          children="Cancel"
-          onClick={(e) => window.close(windowID)}
-        />
+        <button type="button" children="Export" onClick={saveForm.submit} />
+        <button type="button" children="Cancel" onClick={closeSelf} />
       </form>
     </Box>
   );

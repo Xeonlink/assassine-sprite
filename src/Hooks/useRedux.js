@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
+import { SUPPORTING_FORMAT } from "@/extra/Constants";
 
 const preloadedState = {
   images: [],
   scale: 100,
   column: 7,
   windows: [],
-  isSaveModalOpen: false,
+  saveOption: { format: SUPPORTING_FORMAT[0].join("/") },
 };
 
 export default function useRedux(stateName, initValue) {

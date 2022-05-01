@@ -36,7 +36,8 @@
 .App input[type="number"]::-webkit-inner-spin-button,
 .App label,
 .App select,
-.App button {
+.App button,
+.App option {
   all: unset;
   display: block;
 }
@@ -148,11 +149,6 @@
   --trans-dur: 600ms;
 
   animation: modal-show var(--trans-dur) 1;
-
-  display: grid;
-  grid-template-columns: 110px 130px;
-  row-gap: var(--even-gap);
-  column-gap: 0px;
 }
 @keyframes modal-show {
   0% {
@@ -162,7 +158,10 @@
   }
 }
 .App .save-modal form {
-  display: contents;
+  display: grid;
+  grid-template-columns: 110px 130px;
+  row-gap: var(--even-gap);
+  column-gap: 0px;
 }
 .App .save-modal header {
   color: var(--primary-clr-lightest);
@@ -178,7 +177,7 @@
   cursor: pointer;
 }
 .App .save-modal option {
-  color: black;
+  background: var(--primary-clr-light-alpha70);
 }
 .App .save-modal input {
   all: unset;

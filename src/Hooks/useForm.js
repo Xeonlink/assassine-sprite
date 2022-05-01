@@ -1,7 +1,10 @@
 import { useState } from "react";
+import useRedux from "./useRedux";
 
-export default function useForm(defaultValues, submitCallback) {
-  const [data, setData] = useState(defaultValues || {});
+export default function useForm(defaultValues, submitCallback, isUseRedux) {
+  const [data, setData] = !!isUseRedux
+    ? useRedux(defaultValues)
+    : useState(defaultValues || {});
 
   const change = (e, preprocessor) => {
     if (e === "set") {

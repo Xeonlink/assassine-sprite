@@ -5,8 +5,9 @@ import useImage from "@/Hooks/useImage";
 import Box from "@/component/Box";
 import IMG_DROPZONE from "@/img/dropzone100.svg";
 import IcoButton from "@/component/IcoButton";
+import { getFiles } from "../extra/Utils";
 
-const Gallery = styled.div.attrs({ className: "gallery" })`
+const Gallery = styled.div`
   background: url(${IMG_TRANSPARENT});
   transition: 1s;
   transform: scale(${({ scale }) => scale});
@@ -37,13 +38,16 @@ export default function Preview() {
 
   return images.value.length < 1 ? (
     <Box className="default-dropzone" onDrop={onDropImgRemove}>
-      <IcoButton src={IMG_DROPZONE} children="Drop here" />
+      <IcoButton
+        src={IMG_DROPZONE}
+        onClick={() => getFiles(images.add)}
+        children="Drop here"
+      />
     </Box>
   ) : (
     <Gallery scale={scale / 100} column={column} onDrop={onDropImgRemove}>
       {images.value.map((file, index) => (
         <img
-          className="gallery-img"
           src={file.uri}
           alt={file.name}
           onDragStart={(e) => e.dataTransfer.setData("index", index)}
