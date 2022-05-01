@@ -18,8 +18,8 @@ export default function App() {
 
   return (
     <div className="App" onDrop={onDrop} onDragOver={clearDefault}>
-      <ImgList />
       <Preview />
+      <ImgList />
       <ControlSection />
       <ModalContainer />
     </div>
