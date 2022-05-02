@@ -45,7 +45,12 @@ export default function Preview() {
       />
     </Box>
   ) : (
-    <Gallery scale={scale / 100} column={column} onDrop={onDropImgRemove}>
+    <Gallery
+      scale={scale / 100}
+      column={column}
+      onDrop={onDropImgRemove}
+      id="gallery"
+    >
       {images.value.map((file, index) => (
         <img
           src={file.uri}

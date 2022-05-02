@@ -25,5 +25,10 @@ export default function useWindow() {
     ]);
   };
 
-  return { open, close };
+  const toggle = (ui, id) => {
+    const isShowing = windows.some((window) => window.key === id);
+    isShowing ? close(id) : open(ui, id);
+  };
+
+  return { open, close, toggle };
 }

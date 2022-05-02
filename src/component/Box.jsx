@@ -1,9 +1,11 @@
-export default function Box(props) {
-  const { className, children, ...otherProps } = props;
+import React from "react";
 
-  return (
-    <div className={`box ${className}`} {...otherProps}>
-      {children}
-    </div>
+export default function Box(props) {
+  const { base = "div", className, children, ...otherProps } = props;
+
+  return React.createElement(
+    base,
+    { className: `box ${className}`, ...otherProps },
+    children
   );
 }

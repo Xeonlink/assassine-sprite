@@ -49,7 +49,10 @@ export function getFiles(callback) {
     inputUITemp.multiple = true;
     inputUITemp.accept = "image/*";
   }
-  inputUITemp.onchange = () => callback(inputUITemp.files);
+  inputUITemp.onchange = () => {
+    callback(inputUITemp.files);
+    inputUITemp.value = "";
+  };
   inputUITemp.click();
 }
 

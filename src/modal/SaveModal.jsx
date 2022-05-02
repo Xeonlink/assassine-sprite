@@ -4,15 +4,19 @@ import saveAs from "file-saver";
 import { strToNum } from "@/extra/Utils";
 import { SUPPORTING_FORMAT } from "@/extra/Constants";
 import useForm from "@/Hooks/useForm";
+import { useEffect, useRef } from "react";
 
 export default function SaveModal({ closeSelf }) {
+  const focusRef = useRef(null);
+
   const saveForm = useForm(
     "saveOption",
     (options) => {
       const { width, height, format, name = "output", quality = 100 } = options;
       const [mimeType, extension] = format.split("/");
 
-      const gallery = document.querySelector(".gallery");
+      const gallery = document.querySelector("#gallery");
+      if (gallery == undefined) return alert(ALERT_NO_IMG_FOR_EXPORT);
       gallery.style.transform = "scale(1)";
       gallery.style.background = "transparent";
 
@@ -32,6 +36,8 @@ export default function SaveModal({ closeSelf }) {
     true
   );
 
+  useEffect(() => focusRef.current.focus(), []);
+
   return (
     <Box className="save-modal">
       <form>
@@ -41,6 +47,7 @@ export default function SaveModal({ closeSelf }) {
         <select
           id="save-option-id"
           name="format"
+          ref={focusRef}
           value={saveForm.data.format}
           onChange={saveForm.change}
         >
@@ -59,7 +66,7 @@ export default function SaveModal({ closeSelf }) {
           onChange={saveForm.change}
         />
 
-        <label htmlFor="save-option-width">Width:</label>
+        <label htmlFor="save-option-width">Width (px):</label>
         <input
           id="save-option-width"
           type="number"
@@ -69,7 +76,7 @@ export default function SaveModal({ closeSelf }) {
           onChange={saveForm.change}
         />
 
-        <label htmlFor="save-option-height">Height:</label>
+        <label htmlFor="save-option-height">Height (px):</label>
         <input
           id="save-option-height"
           type="number"

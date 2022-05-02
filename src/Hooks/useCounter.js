@@ -6,7 +6,7 @@ export default function useCounter(props) {
   const [value, set] = useRedux(name, initValue);
 
   const up = (e) => {
-    const realStep = e.shiftKey ? shiftStep : step;
+    const realStep = e?.shiftKey ? shiftStep : step;
     if (max !== undefined && max < value * 1 + realStep) return set(max);
     set(((value * 1 + realStep) * 100) / 100);
   };
@@ -18,7 +18,7 @@ export default function useCounter(props) {
   };
 
   const down = (e) => {
-    const realStep = e.shiftKey ? shiftStep : step;
+    const realStep = e?.shiftKey ? shiftStep : step;
     if (min !== undefined && value * 1 - realStep < min) return set(min);
     set(((value * 1 - realStep) * 100) / 100);
   };

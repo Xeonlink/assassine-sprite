@@ -1,4 +1,5 @@
 :root {
+  font-size: 10px;
   --app-padding: 30px;
   --border-rad: 10px;
   --even-gap: 5px;
@@ -8,6 +9,9 @@
   --primary-clr-light-alpha70: rgb(48, 48, 48, 0.7);
   --primary-clr-lighter: rgb(152, 152, 152);
   --primary-clr-lightest: rgb(214, 214, 214);
+
+  --font-color: white;
+  --font-color-dark: rgb(123, 123, 123);
 
   --img-list-img-width: 40px;
   --img-list-img-height: 40px;
@@ -37,7 +41,9 @@
 .App label,
 .App select,
 .App button,
-.App option {
+.App option,
+.App article,
+.App header {
   all: unset;
   display: block;
 }
@@ -76,8 +82,9 @@
 
   max-width: 400px;
   max-height: 300px;
-  width: 50vw;
+  width: 100%;
   height: 50vh;
+  margin: 20px;
 
   color: white;
   font-size: 2rem;
@@ -133,9 +140,15 @@
 .App .control-section > * {
   margin: auto;
 }
-.App .control-section button img {
+.App .control-section button {
   width: 30px;
   height: 30px;
+  font-size: 2rem;
+  color: white;
+}
+.App .control-section button img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 .App .control-section .counter input {
@@ -153,7 +166,7 @@
 @keyframes modal-show {
   0% {
     opacity: 0;
-    transform: translate(0px, -50px);
+    transform: translate(0px, 50px);
     filter: blur(10px);
   }
 }
@@ -175,6 +188,10 @@
 .App .save-modal select {
   color: white;
   cursor: pointer;
+  border-radius: var(--border-rad);
+}
+.App .save-modal select:focus {
+  box-shadow: 0px 0px 10px 0px white;
 }
 .App .save-modal option {
   background: var(--primary-clr-light-alpha70);
@@ -184,6 +201,9 @@
   color: white;
   border-radius: var(--border-rad);
 }
+.App .save-modal input:focus {
+  box-shadow: 0px 0px 10px 0px white;
+}
 .App .save-modal button {
   width: 80px;
   height: 35px;
@@ -192,4 +212,56 @@
   border: 1px solid var(--primary-clr-lighter);
   color: var(--primary-clr-lightest);
   font-weight: bold;
+}
+
+/* --------------------------------- */
+.App .window-container {
+  position: absolute;
+
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+  gap: 5px;
+}
+
+/* --------------------------------- */
+.App .shortcut-modal {
+  --even-gap: 15px;
+  --trans-dur: 600ms;
+
+  max-width: 80vw;
+  max-height: 80vh;
+  width: 300px;
+  height: 400px;
+
+  color: white;
+  text-align: left;
+  overflow: auto;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 40px;
+  grid-auto-rows: 30px;
+  justify-content: stretch;
+  justify-items: start;
+  align-items: center;
+  /* column-gap: 0px; */
+
+  animation: modal-show var(--trans-dur) 1;
+}
+.App .shortcut-modal header {
+  font-size: 2.4rem;
+}
+.App .shortcut-modal .shortcut-info {
+  color: var(--primary-clr-lightest);
+}
+.App .shortcut-modal button {
+  width: 40px;
+  height: 40px;
+  justify-self: right;
+}
+.App .shortcut-modal button img {
+  width: 100%;
+  height: 100%;
 }

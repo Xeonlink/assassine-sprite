@@ -21,13 +21,13 @@ export default function App() {
       <Preview />
       <ImgList />
       <ControlSection />
-      <ModalContainer />
+      <WindowContainer />
     </div>
   );
 }
 
-function ModalContainer() {
+function WindowContainer() {
   const windows = useSelector((root) => root.windows);
 
-  return <div style={{ position: "absolute" }}>{windows}</div>;
+  return <div className="window-container">{windows}</div>;
 }

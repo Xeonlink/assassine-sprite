@@ -6,11 +6,13 @@ export default function IcoButton(props) {
   return (
     <button {...otherProps}>
       {children}
-      <img
-        src={src}
-        alt={alt}
-        onDragStart={draggable ? undefined : clearDefault}
-      />
+      {src && (
+        <img
+          src={src}
+          alt={alt}
+          onDragStart={draggable ? undefined : clearDefault}
+        />
+      )}
     </button>
   );
 }

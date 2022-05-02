@@ -7,7 +7,9 @@ const preloadedState = {
   scale: 100,
   column: 7,
   windows: [],
-  saveOption: { format: SUPPORTING_FORMAT[0].join("/") },
+  saveOption: {
+    format: SUPPORTING_FORMAT[0].join("/"), // TODO : 기본값을 png로 바꾸기, png의 index 자동탐지
+  },
 };
 
 export default function useRedux(stateName, initValue) {
