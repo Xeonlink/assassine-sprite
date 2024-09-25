@@ -7,23 +7,22 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "vite serve",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "vite build && vite serve"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.1",
+    "@reduxjs/toolkit": "^1.9.7",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-redux": "^8.0.1",
-    "redux": "^4.2.0",
-    "styled-components": "^5.3.5"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^8.1.3",
+    "redux": "^4.2.1",
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
-    "gh-pages": "^3.2.3",
-    "vite": "^2.9.5"
+    "@types/react": "^18.3.9",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^1.3.2",
+    "vite": "^2.9.18"
   }
 }
