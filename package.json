@@ -6,7 +6,10 @@
     "dev": "vite serve",
     "build": "vite build",
     "preview": "vite preview",
-    "docker:build": "docker buildx build --platform linux/amd64,linux/arm64 -t registry.ohjimin.com/$npm_package_name:$npm_package_version --push ."
+    "docker:build": "docker buildx build --platform linux/amd64,linux/arm64 -t $npm_package_name:$npm_package_version .",
+    "docker:push": "docker push $npm_package_name:$npm_package_version",
+    "private:docker:build": "docker buildx build --platform linux/amd64,linux/arm64 -t registry.ohjimin.com/$npm_package_name:$npm_package_version .",
+    "private:docker:push": "docker push registry.ohjimin.com/$npm_package_name:$npm_package_version"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
