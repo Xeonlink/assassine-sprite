@@ -1,14 +1,12 @@
 {
-  "name": "assassine_sprite",
+  "name": "assassine-sprite",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.5",
   "scripts": {
     "dev": "vite serve",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "vite serve",
-    "run": "vite serve --host",
-    "deploy": "vite build && vite serve"
+    "docker:build": "docker buildx build --platform linux/amd64,linux/arm64 -t registry.ohjimin.com/$npm_package_name:$npm_package_version --push ."
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
